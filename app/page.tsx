@@ -6,8 +6,10 @@ import Desktop from "@/components/desktop"
 import PostIt from "@/components/post-it"
 import { Toaster } from "@/components/ui/toaster"
 import BootScreen from "@/components/boot-screen"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function Home() {
+  const isMobile = useIsMobile()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -30,6 +32,32 @@ export default function Home() {
 
   const handleLogout = () => {
     setIsLoggedIn(false)
+  }
+
+  if (isMobile) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center inset-0 z-50 p-4 dark">
+        <div className="fixed inset-0 overflow-hidden bg-gradient-to-br from-black via-lime-900 to-black">
+          <div className="absolute inset-0 opacity-20">
+            <div className="bggrid absolute left-0 top-0 grid size-full grid-cols-4 grid-rows-16 gap-4">
+              {Array.from({ length: 64 }).map((_, i) => (
+                <div key={i} className="rounded-md bg-white" />
+              ))}
+            </div>
+          </div>
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+        <div className="text-center text-foreground relative bg-background/80 backdrop-blur-md rounded-lg px-8 pt-8 shadow-lg z-10 flex flex-col items-center gap-2">
+          <h2 className="text-2xl font-bold mb-4">Mobile View Unavailable</h2>
+          <p className="text-muted-foreground border-y py-4">
+            This Virtual OS simulator not optimized for mobile devices.
+            <br />
+            Please use a desktop or tablet.
+          </p>
+          <p className="text-muted-foreground mb-2">Talos - KwikKill</p>
+        </div>
+      </div>
+    )
   }
 
   return (
