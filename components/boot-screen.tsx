@@ -105,15 +105,6 @@ export default function BootScreen() {
 
         {/* Floppy disk animation */}
         <div className="relative mx-auto mb-4 h-40 w-64">
-          {/* Floppy drive */}
-          <div className="absolute left-1/2 top-1/2 h-10 w-48 -translate-x-1/2 -translate-y-1/2 border-2 border-green-700 bg-gray-900">
-            <div className="absolute left-1/2 top-1/2 h-1 w-40 -translate-x-1/2 -translate-y-1/2 bg-gray-800"></div>
-
-            {/* Read indicator light */}
-            {showReadIndicator && (
-              <div className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 animate-pulse"></div>
-            )}
-          </div>
 
           {/* Floppy disk */}
           <div

@@ -41,7 +41,7 @@ export default function TaskBar({ windows, activeWindowId, onWindowClick, onStar
       <div className="flex items-center">
         <Button
           id="start-button"
-          variant={startMenuOpen ? "default" : "secondary"}
+          variant={startMenuOpen ? "default" : "ghost"}
           className="h-10 w-10 rounded-full p-0"
           onClick={onStartClick}
         >
@@ -57,7 +57,7 @@ export default function TaskBar({ windows, activeWindowId, onWindowClick, onStar
           return (
             <Button
               key={window.id}
-              variant={activeWindowId === window.id ? "default" : "secondary"}
+              variant={activeWindowId === window.id ? "default" : "ghost"}
               className="h-8 justify-start px-2 text-xs"
               onClick={() => onWindowClick(window.id)}
             >
