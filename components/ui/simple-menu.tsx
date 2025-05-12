@@ -35,9 +35,10 @@ interface MenuListProps {
   children: React.ReactNode
   isOpen: boolean
   onClose: () => void
+  right?: boolean
 }
 
-export function MenuList({ children, isOpen, onClose }: MenuListProps) {
+export function MenuList({ children, isOpen, onClose, right }: MenuListProps) {
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export function MenuList({ children, isOpen, onClose }: MenuListProps) {
   return (
     <div
       ref={menuRef}
-      className="absolute left-0 z-50 mt-1 min-w-[12rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg"
+      className={`absolute ${right ? "left-[12rem] top-0" : "left-0"}  z-50 mt-1 min-w-[12rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg`}
     >
       <div className="py-1">{children}</div>
     </div>
