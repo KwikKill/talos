@@ -781,7 +781,7 @@ export default function NotepadApp({ initialFileId }: NotepadAppProps) {
 
             <div className="border rounded-md p-2">
               <div className="font-medium mb-2">Files and Folders</div>
-              <ScrollArea className="h-60">
+              <ScrollArea className="h-24">
                 {fileBrowserItems.length === 0 ? (
                   <div className="text-center text-muted-foreground p-4">This folder is empty</div>
                 ) : (

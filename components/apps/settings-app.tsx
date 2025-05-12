@@ -51,6 +51,14 @@ export default function SettingsApp() {
       wifi,
     })
 
+    // change the theme class on the html
+    const htmlElement = document.documentElement
+    if (darkMode) {
+      htmlElement.classList.add("dark")
+    } else {
+      htmlElement.classList.remove("dark")
+    }
+
     toast({
       title: "Settings updated",
       description: "Your changes have been applied successfully.",
