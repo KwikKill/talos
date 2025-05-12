@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
@@ -8,9 +8,13 @@ import { Input } from "@/components/ui/input"
 import { useFileSystem } from "@/components/file-system"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider, useMenu } from "@/components/ui/simple-menu"
 
-export default function NotepadApp() {
+interface NotepadAppProps {
+  initialFileId?: string
+}
+
+export default function NotepadApp({ initialFileId }: NotepadAppProps) {
   const [text, setText] = useState("")
-  const [currentFile, setCurrentFile] = useState<string | null>(null)
+  const [currentFile, setCurrentFile] = useState<string | null>(initialFileId || null)
   const [saveDialogOpen, setSaveDialogOpen] = useState(false)
   const [openDialogOpen, setOpenDialogOpen] = useState(false)
   const [fileName, setFileName] = useState("")
@@ -30,6 +34,18 @@ export default function NotepadApp() {
   const helpMenu = useMenu()
   const fontMenu = useMenu()
   const fontSizeMenu = useMenu()
+
+  // Load file content if initialFileId is provided
+  useEffect(() => {
+    if (initialFileId) {
+      const file = getFileById(initialFileId)
+      if (file) {
+        setText(file.content)
+        setCurrentFile(file.id)
+        setFileName(file.name)
+      }
+    }
+  }, [initialFileId, getFileById])
 
   const handleSave = () => {
     if (currentFile) {

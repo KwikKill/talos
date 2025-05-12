@@ -229,7 +229,7 @@ const initialFiles: FSFile[] = [
   {
     id: "file-readme",
     name: "README.txt",
-    content: "Welcome to ReactOS!\n\nThis is a simulated operating system built with React and Next.js.",
+    content: "Welcome to TalOS!\n\nThis is a simulated operating system.",
     type: "txt",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -238,7 +238,7 @@ const initialFiles: FSFile[] = [
   {
     id: "file-todo",
     name: "todo.txt",
-    content: "1. Learn React\n2. Build an OS simulation\n3. ???\n4. Profit!",
+    content: "1. Learn React\n2. Build an OS simulation\n3. ???",
     type: "txt",
     createdAt: new Date(),
     updatedAt: new Date(),

@@ -14,4 +14,8 @@ export interface AppWindow {
   isMinimized: boolean
   isMaximized: boolean
   zIndex: number
+  data?: {
+    fileId?: string
+    [key: string]: any
+  }
 }

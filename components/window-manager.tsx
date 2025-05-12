@@ -20,6 +20,7 @@ interface WindowManagerProps {
   onUpdatePosition: (windowId: string, position: { x: number; y: number }) => void
   onUpdateSize: (windowId: string, size: { width: number; height: number }, position: { x: number; y: number }) => void
   darkMode?: boolean
+  onOpenFile: (fileId: string, appId: string) => void
 }
 
 export default function WindowManager({
@@ -32,15 +33,21 @@ export default function WindowManager({
   onUpdatePosition,
   onUpdateSize,
   darkMode,
+  onOpenFile,
 }: WindowManagerProps) {
   const getIconComponent = (iconName: string): LucideIcon => {
     return (Icons[iconName as keyof typeof Icons] || Icons.Square) as LucideIcon
   }
 
-  const renderAppContent = (appId: string, windowId: string) => {
+  const renderAppContent = (window: AppWindow) => {
+    const { appId, id } = window
+
+    // Extract fileId from window.data if it exists
+    const fileId = window.data?.fileId
+
     switch (appId) {
       case "notepad":
-        return <NotepadApp />
+        return <NotepadApp initialFileId={fileId} />
       case "calculator":
         return <CalculatorApp />
       case "browser":
@@ -48,7 +55,7 @@ export default function WindowManager({
       case "settings":
         return <SettingsApp />
       case "file-explorer":
-        return <FileExplorerApp />
+        return <FileExplorerApp onOpenFile={onOpenFile} />
       default:
         return <div className="flex h-full items-center justify-center">App not found</div>
     }
@@ -64,7 +71,7 @@ export default function WindowManager({
         // Calculate window dimensions based on maximized state
         const position = window.isMaximized ? { x: 0, y: 0 } : window.position
         const size = window.isMaximized
-          ? {width: "100%", height: "100%"}
+          ? { width: "100%", height: "100%" }
           : { width: window.size.width, height: window.size.height }
 
         return (
@@ -87,10 +94,14 @@ export default function WindowManager({
                 const newHeight = Number.parseInt(ref.style.height)
 
                 // Update both size and position
-                onUpdateSize(window.id, {
-                  width: newWidth,
-                  height: newHeight,
-                }, position)
+                onUpdateSize(
+                  window.id,
+                  {
+                    width: newWidth,
+                    height: newHeight,
+                  },
+                  position,
+                )
               }
             }}
             dragHandleClassName="window-drag-handle"
@@ -136,7 +147,7 @@ export default function WindowManager({
                 </div>
               </div>
               <div className="flex-1 overflow-auto bg-background text-foreground dark:bg-background dark:text-foreground">
-                {renderAppContent(window.appId, window.id)}
+                {renderAppContent(window)}
               </div>
             </div>
           </Rnd>

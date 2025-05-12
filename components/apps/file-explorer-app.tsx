@@ -7,7 +7,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import * as Icons from "lucide-react"
 import { useFileSystem } from "@/components/file-system"
 
-export default function FileExplorerApp() {
+interface FileExplorerAppProps {
+  onOpenFile?: (fileId: string, appId: string) => void
+}
+
+export default function FileExplorerApp({ onOpenFile }: FileExplorerAppProps) {
   const {
     files,
     folders,
@@ -90,6 +94,16 @@ export default function FileExplorerApp() {
     setRenameDialogOpen(true)
   }
 
+  const handleFileDoubleClick = (fileId: string, fileType: string) => {
+    if (onOpenFile) {
+      // Determine which app to open based on file type
+      if (fileType.toLowerCase() === "txt") {
+        onOpenFile(fileId, "notepad")
+      }
+      // Add more file type handlers here as needed
+    }
+  }
+
   const getFileIcon = (fileType: string) => {
     switch (fileType.toLowerCase()) {
       case "txt":
@@ -152,10 +166,7 @@ export default function FileExplorerApp() {
                   selectedItem?.id === file.id ? "bg-accent/50" : ""
                 }`}
                 onClick={() => setSelectedItem({ id: file.id, type: "file" })}
-                onDoubleClick={() => {
-                  // Open file based on type
-                  // For now, we'll just select it
-                }}
+                onDoubleClick={() => handleFileDoubleClick(file.id, file.type)}
                 onContextMenu={(e) => {
                   e.preventDefault()
                   setSelectedItem({ id: file.id, type: "file" })
@@ -192,7 +203,7 @@ export default function FileExplorerApp() {
             >
               Rename
             </Button>
-            <Button variant="ghost" size="sm" className="text-destructive">
+            <Button variant="ghost" size="sm" className="text-destructive" onClick={handleDelete}>
               Delete
             </Button>
           </div>

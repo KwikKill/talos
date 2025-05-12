@@ -13,16 +13,16 @@ interface DesktopScreenProps {
   onLogout: () => void
 }
 
-function DesktopContent(
-  { onLogout }: DesktopScreenProps,
-) {
+function DesktopContent({ onLogout }: DesktopScreenProps) {
   const { settings } = useSystemSettings()
   const [openWindows, setOpenWindows] = useState<AppWindow[]>([])
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null)
   const [startMenuOpen, setStartMenuOpen] = useState(false)
 
-  const openApp = (appId: string, title: string, icon: string) => {
-    const existingWindow = openWindows.find((window) => window.appId === appId)
+  const openApp = (appId: string, title: string, icon: string, data?: { [key: string]: any }) => {
+    const existingWindow = data?.fileId
+      ? openWindows.find((window) => window.appId === appId && window.data?.fileId === data.fileId)
+      : openWindows.find((window) => window.appId === appId)
 
     if (existingWindow) {
       // If the app is already open, just activate its window
@@ -42,15 +42,26 @@ function DesktopContent(
       appId,
       title,
       icon,
-      position: { x: 50 + Math.random() * 100, y: Math.random() * 50 },
+      position: { x: 50 + Math.random() * 300, y: Math.random() * 50 },
       size: { width: 600, height: 400 },
       isMinimized: false,
       isMaximized: false,
-      zIndex: openWindows.length + 1,
+      zIndex: openWindows.length ? Math.max(...openWindows.map((w) => w.zIndex)) + 1 : 1,
+      data,
     }
 
     setOpenWindows([...openWindows, newWindow])
     setActiveWindowId(newWindow.id)
+  }
+
+  const handleOpenFile = (fileId: string, appId: string) => {
+    // Open the file in the appropriate app
+    switch (appId) {
+      case "notepad":
+        openApp("notepad", "Notepad", "FileText", { fileId })
+        break
+      // Add more cases for other file types as needed
+    }
   }
 
   const closeWindow = (windowId: string) => {
@@ -86,7 +97,11 @@ function DesktopContent(
     setOpenWindows(openWindows.map((window) => (window.id === windowId ? { ...window, position } : window)))
   }
 
-  const updateWindowSize = (windowId: string, size: { width: number; height: number }, position: { x: number; y: number }) => {
+  const updateWindowSize = (
+    windowId: string,
+    size: { width: number; height: number },
+    position: { x: number; y: number },
+  ) => {
     setOpenWindows(openWindows.map((window) => (window.id === windowId ? { ...window, size, position } : window)))
   }
 
@@ -144,6 +159,7 @@ function DesktopContent(
           onUpdatePosition={updateWindowPosition}
           onUpdateSize={updateWindowSize}
           darkMode={settings.darkMode}
+          onOpenFile={handleOpenFile}
         />
       </div>
 
