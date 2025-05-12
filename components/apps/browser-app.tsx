@@ -486,7 +486,7 @@ export default function BrowserApp() {
         </form>
       </div>
 
-      <div className="relative flex-1 overflow-auto bg-white dark:bg-gray-900">
+      <div className={`relative flex-1 ${isLoading ? "overflow-hidden" : "overflow-auto"} bg-white dark:bg-gray-900`}>
         {isLoading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-background bg-opacity-80">
             <div className="text-center">
