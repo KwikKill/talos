@@ -93,15 +93,15 @@ export default function FileExplorerApp() {
   const getFileIcon = (fileType: string) => {
     switch (fileType.toLowerCase()) {
       case "txt":
-        return <Icons.FileText className="h-5 w-5 text-blue-500" />
+        return <Icons.FileText className="h-10 w-10 text-blue-500" />
       case "jpg":
       case "png":
       case "gif":
-        return <Icons.Image className="h-5 w-5 text-green-500" />
+        return <Icons.Image className="h-10 w-10 text-green-500" />
       case "pdf":
-        return <Icons.FileText className="h-5 w-5 text-red-500" />
+        return <Icons.FileText className="h-10 w-10 text-red-500" />
       default:
-        return <Icons.File className="h-5 w-5 text-gray-500" />
+        return <Icons.File className="h-10 w-10 text-gray-500" />
     }
   }
 
