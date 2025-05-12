@@ -91,10 +91,10 @@ const GabrielPortfolioMain = () => (
             }}
           >
             <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-4 rounded">
-              VOIR LES PROJETS
+              Projects
             </button>
             <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-4 rounded">
-              VOIR LES EXPÉRIENCES PASSÉES
+              Experience
             </button>
           </div>
         </div>
