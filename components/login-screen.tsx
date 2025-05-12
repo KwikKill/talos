@@ -24,7 +24,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   return (
     <div
       className="flex h-full w-full flex-col items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920')" }}
+      style={{ backgroundImage: "url('/wallpaper-lockscreen.webp')" }}
     >
       <div className="w-80 rounded-lg bg-gray-800/80 p-6 backdrop-blur-sm">
         <div className="mb-6 text-center">

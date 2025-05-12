@@ -13,11 +13,11 @@ import { useToast } from "@/hooks/use-toast"
 
 // Define wallpaper options
 const wallpapers = [
-  { id: "default", url: "/placeholder.svg?height=1080&width=1920", name: "Default" },
-  { id: "blue", url: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809", name: "Blue Gradient" },
-  { id: "mountain", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb", name: "Mountain" },
-  { id: "forest", url: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d", name: "Forest" },
-  { id: "beach", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", name: "Beach" },
+  { id: "default", url: "/wallpaper-default.webp", name: "Default" },
+  { id: "blue", url: "/wallpaper1.webp", name: "Blue Gradient" },
+  { id: "mountain", url: "/wallpaper2.webp", name: "Mountain" },
+  { id: "forest", url: "/wallpaper3.webp", name: "Forest" },
+  { id: "beach", url: "/wallpaper4.webp", name: "Beach" },
 ]
 
 export default function SettingsApp() {
