@@ -345,6 +345,11 @@ export default function BrowserApp() {
         processedUrl = "https://" + processedUrl
       }
 
+      // Scroll to top
+      if (contentRef) {
+        contentRef.parentElement?.scrollTo({ top: 0, behavior: "instant" })
+      }
+
       setIsLoading(true)
       setUrl(processedUrl)
       setDisplayUrl(processedUrl)
