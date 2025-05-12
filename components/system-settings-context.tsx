@@ -8,6 +8,7 @@ interface SystemSettings {
   volume: number
   brightness: number
   wallpaper: string
+  wifi: boolean
 }
 
 interface SystemSettingsContextType {
@@ -20,6 +21,7 @@ const defaultSettings: SystemSettings = {
   volume: 75,
   brightness: 100,
   wallpaper: "/placeholder.svg?height=1080&width=1920",
+  wifi: true,
 }
 
 const SystemSettingsContext = createContext<SystemSettingsContextType | undefined>(undefined)

@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ArrowRight, RefreshCw, Home, Search, Globe, AlertTriangle, Wifi, Terminal } from "lucide-react"
+import { useSystemSettings } from "@/components/system-settings-context"
 
 // Custom Link component for internal navigation
 const BrowserLink = ({
@@ -327,6 +328,7 @@ const NoConnectionPage = () => (
 )
 
 export default function BrowserApp() {
+  const { settings } = useSystemSettings()
   const [url, setUrl] = useState("https://list.talos.com")
   const [displayUrl, setDisplayUrl] = useState("https://list.talos.com")
   const [isLoading, setIsLoading] = useState(false)
@@ -438,7 +440,7 @@ export default function BrowserApp() {
 
   // Render content based on connection and website availability
   const renderContent = () => {
-    if (!isConnected) {
+    if (!settings.wifi || !isConnected) {
       return <NoConnectionPage />
     }
 

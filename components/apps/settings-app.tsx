@@ -27,7 +27,7 @@ export default function SettingsApp() {
   // Local state for form values
   const [darkMode, setDarkMode] = useState(settings.darkMode)
   const [volume, setVolume] = useState(settings.volume)
-  const [wifi, setWifi] = useState(true)
+  const [wifi, setWifi] = useState(settings.wifi)
   const [brightness, setBrightness] = useState(settings.brightness)
   const [selectedWallpaper, setSelectedWallpaper] = useState(settings.wallpaper)
   const [customWallpaperUrl, setCustomWallpaperUrl] = useState("")
@@ -38,6 +38,7 @@ export default function SettingsApp() {
     setVolume(settings.volume)
     setBrightness(settings.brightness)
     setSelectedWallpaper(settings.wallpaper)
+    setWifi(settings.wifi)
   }, [settings])
 
   // Apply settings immediately
@@ -47,6 +48,7 @@ export default function SettingsApp() {
       volume,
       brightness,
       wallpaper: selectedWallpaper,
+      wifi,
     })
 
     toast({
@@ -64,6 +66,10 @@ export default function SettingsApp() {
     if (customWallpaperUrl.trim()) {
       setSelectedWallpaper(customWallpaperUrl)
     }
+  }
+
+  const updateWifi = (value: boolean) => {
+    setWifi(value)
   }
 
   return (
@@ -163,7 +169,7 @@ export default function SettingsApp() {
               <Wifi className="h-5 w-5" />
               <Label htmlFor="wifi">Wi-Fi</Label>
             </div>
-            <Switch id="wifi" checked={wifi} onCheckedChange={setWifi} />
+            <Switch id="wifi" checked={wifi} onCheckedChange={updateWifi} />
           </div>
 
           {wifi && (
