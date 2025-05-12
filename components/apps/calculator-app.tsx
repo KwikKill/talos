@@ -73,14 +73,19 @@ export default function CalculatorApp() {
 
     const result = performCalculation()
     setDisplay(String(result))
-    setFirstOperand(result)
+    setFirstOperand(null)
     setOperator(null)
     setWaitingForSecondOperand(false)
   }
 
   return (
     <div className="flex h-full flex-col bg-background text-foreground p-2">
-      <div className="mb-2 flex h-12 items-center justify-end rounded bg-muted p-2 text-right text-2xl">{display}</div>
+      <div className="mb-2 flex flex-col h-12 items-end justify-center rounded bg-muted p-2 text-right text-2xl">
+        <p className="text-sm text-muted-foreground">
+          {firstOperand !== null ? firstOperand : ""} {operator ? operator : ""}
+        </p>
+        <p>{display}</p>
+      </div>
       <div className="grid flex-1 grid-cols-4 gap-1">
         <Button variant="outline" onClick={clearDisplay}>
           C
