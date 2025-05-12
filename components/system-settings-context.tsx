@@ -20,7 +20,7 @@ const defaultSettings: SystemSettings = {
   darkMode: false,
   volume: 75,
   brightness: 100,
-  wallpaper: "/placeholder.svg?height=1080&width=1920",
+  wallpaper: "/wallpaper-default.webp",
   wifi: true,
 }
 
