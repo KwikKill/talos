@@ -42,7 +42,7 @@ function DesktopContent(
       appId,
       title,
       icon,
-      position: { x: 50 + Math.random() * 100, y: 50 + Math.random() * 100 },
+      position: { x: 50 + Math.random() * 100, y: Math.random() * 50 },
       size: { width: 600, height: 400 },
       isMinimized: false,
       isMaximized: false,
@@ -100,7 +100,7 @@ function DesktopContent(
         filter: `brightness(${settings.brightness}%)`,
       }}
     >
-      <div className="flex-1 p-4">
+      <div className="relative flex-1 p-4">
         <div className="grid grid-cols-6 gap-4">
           <DesktopIcon
             id="notepad"
@@ -133,19 +133,19 @@ function DesktopContent(
             onClick={() => openApp("file-explorer", "File Explorer", "Folder")}
           />
         </div>
-      </div>
 
-      <WindowManager
-        windows={openWindows}
-        activeWindowId={activeWindowId}
-        onClose={closeWindow}
-        onMinimize={minimizeWindow}
-        onMaximize={maximizeWindow}
-        onActivate={activateWindow}
-        onUpdatePosition={updateWindowPosition}
-        onUpdateSize={updateWindowSize}
-        darkMode={settings.darkMode}
-      />
+        <WindowManager
+          windows={openWindows}
+          activeWindowId={activeWindowId}
+          onClose={closeWindow}
+          onMinimize={minimizeWindow}
+          onMaximize={maximizeWindow}
+          onActivate={activateWindow}
+          onUpdatePosition={updateWindowPosition}
+          onUpdateSize={updateWindowSize}
+          darkMode={settings.darkMode}
+        />
+      </div>
 
       <TaskBar
         windows={openWindows}

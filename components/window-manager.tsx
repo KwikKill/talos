@@ -64,7 +64,7 @@ export default function WindowManager({
         // Calculate window dimensions based on maximized state
         const position = window.isMaximized ? { x: 0, y: 0 } : window.position
         const size = window.isMaximized
-          ? { width: "100%", height: "91%" }
+          ? {width: "100%", height: "100%"}
           : { width: window.size.width, height: window.size.height }
 
         return (
