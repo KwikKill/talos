@@ -116,7 +116,7 @@ function DesktopContent({ onLogout }: DesktopScreenProps) {
       }}
     >
       <div className="relative flex-1 p-4">
-        <div className="grid grid-cols-6 gap-4">
+        <div className="wallpaper grid grid-cols-6 gap-4">
           <DesktopIcon
             id="notepad"
             title="Notepad"

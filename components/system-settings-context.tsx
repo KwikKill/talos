@@ -36,6 +36,11 @@ export function SystemSettingsProvider({ children }: { children: React.ReactNode
 
       const savedDarkMode = localStorage.getItem("os_darkMode")
       if (savedDarkMode !== null) savedSettings.darkMode = savedDarkMode === "true"
+      // update html class
+      const htmlElement = document.documentElement
+      if (savedDarkMode === "true") {
+        htmlElement.classList.add("dark")
+      }
 
       const savedVolume = localStorage.getItem("os_volume")
       if (savedVolume !== null) savedSettings.volume = Number.parseInt(savedVolume)

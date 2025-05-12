@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 
-
 export const metadata: Metadata = {
   title: 'TalOS',
   description: 'Virtual OS in React',
@@ -15,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className='dark'
+    <html lang="en"
       suppressHydrationWarning
     >
       <head>

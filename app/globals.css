@@ -102,7 +102,7 @@ body {
   box-shadow: 0 0 15px rgb(0 0% 100% / 0.5);
 }
 
-.screen::before {
+.wallpaper::before {
   content: '';
   position: absolute;
   top: 0;
@@ -117,5 +117,5 @@ body {
     transparent 2px
   );
   pointer-events: none;
-  z-index: 1000;
+  z-index: 1;
 }
