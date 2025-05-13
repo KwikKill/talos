@@ -43,6 +43,7 @@ export default function StartMenu({ isOpen, onClose, onAppClick, onLogout }: Sta
     { id: "browser", title: "Internet Browser", icon: "Globe" },
     { id: "settings", title: "Settings", icon: "Settings" },
     { id: "file-explorer", title: "File Explorer", icon: "Folder" },
+    { id: "cmd", title: "Command Prompt", icon: "Terminal" },
   ]
 
   const getIconComponent = (iconName: string): LucideIcon => {

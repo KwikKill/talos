@@ -9,6 +9,7 @@ import CalculatorApp from "@/components/apps/calculator-app"
 import BrowserApp from "@/components/apps/browser-app"
 import SettingsApp from "@/components/apps/settings-app"
 import FileExplorerApp from "@/components/apps/file-explorer-app"
+import CmdApp from "@/components/apps/cmd-app"
 
 interface WindowManagerProps {
   windows: AppWindow[]
@@ -56,6 +57,8 @@ export default function WindowManager({
         return <SettingsApp />
       case "file-explorer":
         return <FileExplorerApp onOpenFile={onOpenFile} />
+      case "cmd":
+        return <CmdApp onOpenFile={onOpenFile} onClose={() => onClose(window.id)} />
       default:
         return <div className="flex h-full items-center justify-center">App not found</div>
     }

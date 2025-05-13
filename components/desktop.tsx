@@ -147,6 +147,12 @@ function DesktopContent({ onLogout }: DesktopScreenProps) {
             icon="Folder"
             onClick={() => openApp("file-explorer", "File Explorer", "Folder")}
           />
+          <DesktopIcon
+            id="cmd"
+            title="Command Prompt"
+            icon="Terminal"
+            onClick={() => openApp("cmd", "Command Prompt", "Terminal")}
+          />
         </div>
 
         <WindowManager
