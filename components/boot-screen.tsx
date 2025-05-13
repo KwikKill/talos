@@ -7,7 +7,7 @@ export default function BootScreen() {
   const [loadingText, setLoadingText] = useState("Initializing system...")
   const [loadingDots, setLoadingDots] = useState("")
   const [floppyInserted, setFloppyInserted] = useState(false)
-  const [floppyPosition, setFloppyPosition] = useState(0)
+  const [floppyPosition, setFloppyPosition] = useState(-50)
   const [showReadIndicator, setShowReadIndicator] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 

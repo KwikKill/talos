@@ -72,7 +72,7 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 bg-black/40" />
       </div>
-      <div className="relative h-full w-full max-w-6xl rounded-xl bg-black p-8 shadow-2xl">
+      <div className="relative h-full w-full max-w-6xl rounded-xl bg-black p-8 shadow-2xl overflow-visible">
         {/* Computer screen bezel */}
         <div className="absolute inset-0 rounded-xl border-8 border-gray-800 shadow-inner"></div>
 
