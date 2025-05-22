@@ -65,12 +65,19 @@ export default function Home() {
       <div className="fixed inset-0 overflow-hidden bg-gradient-to-br from-black via-lime-900 to-black">
         <div className="absolute inset-0 opacity-20">
           <div className="bggrid absolute left-0 top-0 grid size-full grid-cols-12 grid-rows-12 gap-4">
-            {Array.from({ length: 144 }).map((_, i) => (
-              <div key={i} className="rounded-md bg-white" />
-            ))}
+            {Array.from({ length: 144 }).map((_, i) => {
+              const delay = `${((i % 12) + (Math.floor(i / 12))) * 0.1}s`; // Diagonal wave
+              return (
+                <div
+                  key={i}
+                  className="rounded-md bg-white shadow-xl"
+                  style={{ '--delay': delay } as React.CSSProperties}
+                />
+              );
+            })}
           </div>
         </div>
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/50 pointer-events-none backdrop-blur-sm" />
       </div>
       <div className="relative h-full w-full max-w-6xl rounded-xl bg-black p-8 shadow-2xl overflow-visible">
         {/* Computer screen bezel */}
@@ -81,7 +88,7 @@ export default function Home() {
 
         {/* Screen content */}
         <div className="screen relative h-full w-full overflow-hidden rounded-md bg-blue-900">
-          {isLoading ? <BootScreen /> : isLoggedIn ? <Desktop onLogout={handleLogout}/> : <LoginScreen onLogin={handleLogin} />}
+          {isLoading ? <BootScreen /> : isLoggedIn ? <Desktop onLogout={handleLogout} /> : <LoginScreen onLogin={handleLogin} />}
           <Toaster />
         </div>
       </div>
